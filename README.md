@@ -11,7 +11,7 @@ It uses a combination of [Douglas-Peucker](http://en.wikipedia.org/wiki/Ramer-Do
 
 Polyline simplification dramatically reduces the number of points in a polyline while retaining its shape, giving a huge performance boost when processing it and also reducing visual noise. For example, it's essential when rendering a 70k-points line chart or a map route in the browser using MapKit.
 
-![SwiftSimplify](https://raw.githubusercontent.com/malcommac/SwiftDate/master/screenshot.png)
+![SwiftSimplify](https://raw.githubusercontent.com/malcommac/SwiftSimplify/master/screenshot.png)
 
 ## Requirements
 * iOS 8.0+ / Mac OS X 10.10+
