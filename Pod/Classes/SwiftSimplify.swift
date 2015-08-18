@@ -41,7 +41,7 @@ func equalsPoints<T>(pointA: T, pointB: T) -> Bool {
 	return false
 }
 
-class SwiftSimplify {
+public class SwiftSimplify {
 
 	/**
 	Returns an array of simplified points
@@ -52,7 +52,7 @@ class SwiftSimplify {
 	
 	:returns: Returns an array of simplified points
 	*/
-	class func simplify<T>(points: [T], tolerance: Float?, highQuality: Bool = false) -> [T] {
+	public class func simplify<T>(points: [T], tolerance: Float?, highQuality: Bool = false) -> [T] {
 		if points.count == 2 {
 			return points
 		}

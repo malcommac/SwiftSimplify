@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "SwiftSimplify"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "Tiny high-performance Swift polyline simplification library"
   s.description      = <<-DESC
                        	SwiftSimplify is a tiny high-performance Swift polyline simplification ported from Simplify.js.
