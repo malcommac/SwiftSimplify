@@ -25,13 +25,10 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/malcommac/SwiftSimplify.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/danielemargutti'
 
-  s.platform     = :ios
+spec.ios.deployment_target = "8.0"
+spec.osx.deployment_target = "10.9"
+ # s.platform     = :ios,
   s.requires_arc = true
-
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'SwiftSimplify' => ['Pod/Assets/*.png']
-  }
-
   s.frameworks = 'UIKit', 'CoreLocation'
 end
