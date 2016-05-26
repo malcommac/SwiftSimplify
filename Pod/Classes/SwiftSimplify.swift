@@ -46,11 +46,11 @@ public class SwiftSimplify {
 	/**
 	Returns an array of simplified points
 	
-	:param: points      An array of points of (maybe CGPoint or CLLocationCoordinate2D points)
-	:param: tolerance   Affects the amount of simplification (in the same metric as the point coordinates)
-	:param: highQuality Excludes distance-based preprocessing step which leads to highest quality simplification but runs ~10-20 times slower.
+	- parameter points:      An array of points of (maybe CGPoint or CLLocationCoordinate2D points)
+	- parameter tolerance:   Affects the amount of simplification (in the same metric as the point coordinates)
+	- parameter highQuality: Excludes distance-based preprocessing step which leads to highest quality simplification but runs ~10-20 times slower.
 	
-	:returns: Returns an array of simplified points
+	- returns: Returns an array of simplified points
 	*/
 	public class func simplify<T>(points: [T], tolerance: Float?, highQuality: Bool = false) -> [T] {
 		if points.count == 2 {
@@ -68,7 +68,7 @@ public class SwiftSimplify {
 		var newPoints: [T] = [prevPoint]
 		var point: T = points[1]
 		
-		for (var idx = 1; idx < points.count; ++idx) {
+		for idx in 1 ..< points.count {
 			point = points[idx]
 			let distance = getSqDist(point, pointB: prevPoint)
 			if distance > tolerance {
@@ -77,7 +77,7 @@ public class SwiftSimplify {
 			}
 		}
 		
-		if equalsPoints(prevPoint, point) == false {
+		if equalsPoints(prevPoint, pointB: point) == false {
 			newPoints.append(point)
 		}
 		
@@ -97,8 +97,8 @@ public class SwiftSimplify {
 		var maxSqDistance = tolerance
 		var index = 0
 		
-		for (var i = first + 1; i < last; ++i) {
-			var sqDist = getSQSegDist(point: points[i], point1: points[first], point2: points[last])
+		for i in first + 1 ..< last {
+			let sqDist = getSQSegDist(point: points[i], point1: points[first], point2: points[last])
 			if sqDist > maxSqDistance {
 				index = i
 				maxSqDistance = sqDist

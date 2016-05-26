@@ -25,9 +25,9 @@ class ViewController: UIViewController {
 		super.viewDidAppear(animated)
 		
 		// Just load some example's data from a JSON file.
-		var exampleJSONPath = NSBundle.mainBundle().pathForResource("1k", ofType: "json")
-		var JSONData = NSData(contentsOfFile:exampleJSONPath!, options: nil, error: nil)
-		var JSONObj: AnyObject? = NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions.MutableContainers, error: nil)
+		let exampleJSONPath = NSBundle.mainBundle().pathForResource("1k", ofType: "json")
+		let JSONData = try? NSData(contentsOfFile:exampleJSONPath!, options: [])
+		let JSONObj: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions.MutableContainers)
 		
 		if let JSONObj = JSONObj as? NSArray {
 			// SwiftSimplify can take an array of [CGPoint] or [CLLocationCoordinate2D]
@@ -49,17 +49,17 @@ class ViewController: UIViewController {
 	}
 	
 	func refresh() {
-		var tolerance = Float(rSlider!.value)
-		var hQ = (hQuality!.state == UIControlState.Selected ? true : false)
+		let tolerance = Float(rSlider!.value)
+		let hQ = (hQuality!.state == UIControlState.Selected ? true : false)
 		
 		toleranceLabel!.text = "Tolerance: \(rSlider!.value) px"
 		
 		// Call our library in background thread
-		dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) { // 1
+		dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) { // 1
 			let initialTime = CACurrentMediaTime();
 			
 			// Here is the magic!
-			var simplified = SwiftSimplify.simplify(self.initialPoints!, tolerance: tolerance, highQuality: hQ)
+			let simplified = SwiftSimplify.simplify(self.initialPoints!, tolerance: tolerance, highQuality: hQ)
 			
 			// A little masturbation benchmark for our lib
 			let elapsedTime = round(1000 * (CACurrentMediaTime() - initialTime)) / 1000
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
 	
 	func convertJSONToCGPoints(list: NSArray) -> [CGPoint] {
 		var points: [CGPoint] = []
-		for (var idx = 0; idx < list.count; idx++ ) {
+		for idx in 0 ..< list.count {
 			if let itemDict = list[idx] as? NSDictionary {
 				if let x = itemDict["x"] as? NSNumber, y = itemDict["y"] as? NSNumber {
 					points.append( CGPointMake( CGFloat(x.floatValue), CGFloat(y.floatValue)) )
