@@ -9,4 +9,5 @@ Pod::Spec.new do |spec|
   spec.source_files     = 'Pod/Classes/**/*'
   spec.framework        = 'CoreLocation'
   spec.requires_arc     = true
+  spec.ios.deployment_target = '8.0'
 end
