@@ -62,6 +62,32 @@ public class SwiftSimplify {
 		result = simplifyDouglasPeucker(result, tolerance: sqTolerance)
 		return result
 	}
+    
+    /**
+     Creates a simplified path
+     
+     - parameter path:        CGPath to be simplified
+     - parameter tolerance:   Affects the amount of simplification (in the same metric as the point coordinates)
+     - parameter smooth:      Whether the path should be smoothed post simplification
+     - parameter highQuality: Excludes distance-based preprocessing step which leads to highest quality simplification but runs ~10-20 times slower.
+     
+     - returns: Simplified path
+     */
+    public class func simplifyPath(path: CGPath, tolerance: Float?, smooth: Bool = false, highQuality: Bool = false)->CGPath {
+        
+        let points = simplify(path.points(), tolerance: tolerance, highQuality: highQuality)
+        let simplifiedPath = CGPathCreateMutable()
+        
+        for i in 0 ..< (points.count-1) {
+            let p1 = points[i]
+            let p2 = points[i+1]
+            CGPathMoveToPoint(simplifiedPath, nil, p1.x, p1.y)
+            CGPathAddLineToPoint(simplifiedPath, nil, p2.x, p2.y)
+        }
+        
+        return smooth ? smoothPath(simplifiedPath) : simplifiedPath
+    }
+
 	
 	private class func simplifyRadialDistance<T>(points: [T], tolerance: Float!) -> [T] {
 		var prevPoint: T = points.first!
@@ -167,5 +193,64 @@ public class SwiftSimplify {
 			return 0.0
 		}
 	}
-	
+    
+    private class func smoothPath(path: CGPath)->CGPath {
+        let points = path.points()
+        
+        let smoothedPath = CGPathCreateMutable()
+        
+        CGPathMoveToPoint(smoothedPath, nil, points[0].x, points[0].y)
+        var i = 1
+        while i<points.count-3 {
+            let end = CGPoint(x: (points[i+1].x + points[i+3].x)/2.0, y: (points[i+1].y + points[i+3].y)/2)
+            CGPathAddCurveToPoint(smoothedPath, nil, points[i].x, points[i].y, points[i+1].x, points[i+1].y, end.x, end.y)
+            i+=3
+        }
+        
+        if i == points.count-3 {
+            CGPathAddCurveToPoint(smoothedPath, nil, points[i].x, points[i].y, points[i+1].x, points[i+1].y, points[i+2].x, points[i+2].y)
+        } else if i == points.count-2{
+            CGPathAddQuadCurveToPoint(smoothedPath, nil, points[i].x, points[i].y, points.last!.x, points.last!.y)
+        } else {
+            CGPathAddLineToPoint(smoothedPath, nil, points[i].x, points[i].y)
+        }
+        
+        return smoothedPath
+    }
+    
+}
+
+
+public extension CGPath {
+    
+    private func forEachElement(@noescape body: @convention(block) (CGPathElement) -> Void) {
+        typealias Body = @convention(block) (CGPathElement) -> Void
+        func callback(info: UnsafeMutablePointer<Void>, element: UnsafePointer<CGPathElement>) {
+            let body = unsafeBitCast(info, Body.self)
+            body(element.memory)
+        }
+        let unsafeBody = unsafeBitCast(body, UnsafeMutablePointer<Void>.self)
+        CGPathApply(self, unsafeBody, callback)
+    }
+    
+    public func points()->[CGPoint] {
+        var points = [CGPoint]()
+        forEachElement { element in
+            switch (element.type) {
+            case CGPathElementType.MoveToPoint:
+                points.append(element.points[0])
+            case .AddLineToPoint:
+                points.append(element.points[0])
+            case .AddQuadCurveToPoint:
+                points.append(element.points[0])
+                points.append(element.points[1])
+            case .AddCurveToPoint:
+                points.append(element.points[0])
+                points.append(element.points[1])
+                points.append(element.points[2])
+            case .CloseSubpath: break
+            }
+        }
+        return points
+    }
 }
