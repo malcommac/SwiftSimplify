@@ -57,20 +57,37 @@ class ViewController: UIViewController {
 		// Call our library in background thread
 		dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) { // 1
 			let initialTime = CACurrentMediaTime();
-			
-			// Here is the magic!
-			let simplified = SwiftSimplify.simplify(self.initialPoints!, tolerance: tolerance, highQuality: hQ)
+            let start = self.initialPoints!.first!.x
+            var minY = self.initialPoints!.first!.y
+            
+            for i in 1 ..< self.initialPoints!.count {
+                let p1 = self.initialPoints![i]
+                if p1.y < minY {
+                    minY = p1.y
+                }
+            }
+            let path = CGPathCreateMutable()
+            for i in 0 ..< (self.initialPoints!.count-1) {
+                let p1 = self.initialPoints![i]
+                let p2 = self.initialPoints![i+1]
+                CGPathMoveToPoint(path, nil, p1.x-start, p1.y-minY)
+                CGPathAddLineToPoint(path, nil, p2.x-start, p2.y-minY)
+            }
+            // Here is the magic!
+            let simplifiedPath = SwiftSimplify.simplifyPath(path, tolerance: tolerance, smooth: true, highQuality: hQ)
+            let simplifiedPoints = simplifiedPath.points()
+
 			
 			// A little masturbation benchmark for our lib
 			let elapsedTime = round(1000 * (CACurrentMediaTime() - initialTime)) / 1000
-			let decrement = 100.0 - ((Float(simplified.count) / Float(self.initialPoints!.count)) * 100.0)
+            let decrement = 100.0 - ((Float(simplifiedPoints.count) / Float(self.initialPoints!.count)) * 100.0)
 			
 			dispatch_async(dispatch_get_main_queue()) {
 				// Update the rendering view and print some fancy stuff
-				self.rView!.renderPoints(simplified)
+                self.rView!.renderPath(simplifiedPath)
 				
 				var resultsString = "› INITIAL POINTS: \(self.initialPoints!.count)\n"
-				resultsString += "› AFTER SEMPLIFICATION: \(self.rView!.points!.count)\n"
+                resultsString += "› AFTER SEMPLIFICATION: \(simplifiedPoints.count)\n"
 				resultsString += "› REDUCTION: \(decrement)%\n"
 				resultsString += "› ELAPSED TIME: \(elapsedTime) ms"
 				self.resultsLabel!.text = resultsString
