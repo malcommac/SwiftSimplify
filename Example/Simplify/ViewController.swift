@@ -10,11 +10,12 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController {
-	@IBOutlet var rView:			RenderView?
-	@IBOutlet var rSlider:			UISlider?
-	@IBOutlet var hQuality:			UISwitch?
-	@IBOutlet var resultsLabel:		UILabel?
-	@IBOutlet var toleranceLabel:	UILabel?
+	@IBOutlet weak var rView: RenderView!
+	@IBOutlet weak var rSlider: UISlider!
+	@IBOutlet weak var hQuality: UISwitch!
+    @IBOutlet weak var smoothSwitch: UISwitch!
+	@IBOutlet weak var resultsLabel: UILabel!
+	@IBOutlet weak var toleranceLabel: UILabel!
 	private var initialPoints:		[CGPoint]?
 
 	override func viewDidLoad() {
@@ -43,6 +44,10 @@ class ViewController: UIViewController {
 	@IBAction func didChangeHQParameter(sender: UISwitch) {
 		refresh()
 	}
+    
+    @IBAction func didChangeSmoothParameter(sender: UISwitch) {
+        refresh()
+    }
 	
 	@IBAction func didChangeValue(sender: UISlider) {
 		refresh()
@@ -50,13 +55,15 @@ class ViewController: UIViewController {
 	
 	func refresh() {
 		let tolerance = Float(rSlider!.value)
-		let hQ = (hQuality!.state == UIControlState.Selected ? true : false)
-		
+		let hQ = hQuality.on
+        let smooth = smoothSwitch.on
+
 		toleranceLabel!.text = "Tolerance: \(rSlider!.value) px"
 		
 		// Call our library in background thread
 		dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) { // 1
 			let initialTime = CACurrentMediaTime();
+            
             let start = self.initialPoints!.first!.x
             var minY = self.initialPoints!.first!.y
             
@@ -66,6 +73,7 @@ class ViewController: UIViewController {
                     minY = p1.y
                 }
             }
+			// Here is the magic!
             let path = CGPathCreateMutable()
             for i in 0 ..< (self.initialPoints!.count-1) {
                 let p1 = self.initialPoints![i]
@@ -73,21 +81,19 @@ class ViewController: UIViewController {
                 CGPathMoveToPoint(path, nil, p1.x-start, p1.y-minY)
                 CGPathAddLineToPoint(path, nil, p2.x-start, p2.y-minY)
             }
-            // Here is the magic!
-            let simplifiedPath = SwiftSimplify.simplifyPath(path, tolerance: tolerance, smooth: true, highQuality: hQ)
+            let simplifiedPath = SwiftSimplify.simplifyPath(path, tolerance: tolerance, smooth: smooth, highQuality: hQ)
             let simplifiedPoints = simplifiedPath.points()
-
 			
 			// A little masturbation benchmark for our lib
 			let elapsedTime = round(1000 * (CACurrentMediaTime() - initialTime)) / 1000
-            let decrement = 100.0 - ((Float(simplifiedPoints.count) / Float(self.initialPoints!.count)) * 100.0)
+			let decrement = 100.0 - ((Float(simplifiedPoints.count) / Float(self.initialPoints!.count)) * 100.0)
 			
 			dispatch_async(dispatch_get_main_queue()) {
 				// Update the rendering view and print some fancy stuff
-                self.rView!.renderPath(simplifiedPath)
+				self.rView!.renderPath(simplifiedPath)
 				
 				var resultsString = "› INITIAL POINTS: \(self.initialPoints!.count)\n"
-                resultsString += "› AFTER SEMPLIFICATION: \(simplifiedPoints.count)\n"
+				resultsString += "› AFTER SEMPLIFICATION: \(simplifiedPoints.count)\n"
 				resultsString += "› REDUCTION: \(decrement)%\n"
 				resultsString += "› ELAPSED TIME: \(elapsedTime) ms"
 				self.resultsLabel!.text = resultsString
