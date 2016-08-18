@@ -32,10 +32,10 @@
 import UIKit
 import CoreLocation
 
-func equalsPoints<T>(pointA: T, pointB: T) -> Bool {
-	if let pointA = pointA as? CGPoint, pointB = pointB as? CGPoint {
+func equalsPoints<T>(_ pointA: T, pointB: T) -> Bool {
+	if let pointA = pointA as? CGPoint, let pointB = pointB as? CGPoint {
 		return (pointA.x == pointB.x && pointA.y == pointB.y)
-	} else if let pointA = pointA as? CLLocationCoordinate2D, pointB = pointB as? CLLocationCoordinate2D {
+	} else if let pointA = pointA as? CLLocationCoordinate2D, let pointB = pointB as? CLLocationCoordinate2D {
 		return ( pointA.latitude == pointB.latitude && pointA.longitude == pointB.longitude )
 	}
 	return false
@@ -52,7 +52,7 @@ public class SwiftSimplify {
 	
 	- returns: Returns an array of simplified points
 	*/
-	public class func simplify<T>(points: [T], tolerance: Float?, highQuality: Bool = false) -> [T] {
+	public class func simplify<T>(_ points: [T], tolerance: Float?, highQuality: Bool = false) -> [T] {
 		if points.count == 2 {
 			return points
 		}
@@ -63,7 +63,7 @@ public class SwiftSimplify {
 		return result
 	}
 	
-	private class func simplifyRadialDistance<T>(points: [T], tolerance: Float!) -> [T] {
+	private class func simplifyRadialDistance<T>(_ points: [T], tolerance: Float!) -> [T] {
 		var prevPoint: T = points.first!
 		var newPoints: [T] = [prevPoint]
 		var point: T = points[1]
@@ -84,7 +84,7 @@ public class SwiftSimplify {
 		return newPoints
 	}
 	
-	private class func simplifyDouglasPeucker<T>(points: [T], tolerance: Float!) -> [T] {
+	private class func simplifyDouglasPeucker<T>(_ points: [T], tolerance: Float!) -> [T] {
 		// simplification using Ramer-Douglas-Peucker algorithm
 		let last: Int = points.count - 1
 		var simplified: [T] = [points.first!]
@@ -93,7 +93,7 @@ public class SwiftSimplify {
 		return simplified
 	}
 	
-	private class func simplifyDPStep<T>(points: [T], first: Int, last: Int, tolerance: Float, inout simplified: [T]) {
+	private class func simplifyDPStep<T>(_ points: [T], first: Int, last: Int, tolerance: Float, simplified: inout [T]) {
 		var maxSqDistance = tolerance
 		var index = 0
 		
@@ -118,18 +118,18 @@ public class SwiftSimplify {
 	
 	private class func getSQSegDist<T>(point p: T, point1 p1: T, point2 p2: T) -> Float {
 		// square distance from a point to a segment
-		var point: CGPoint = CGPointZero
-		var point1: CGPoint = CGPointZero
-		var point2: CGPoint = CGPointZero
+		var point: CGPoint = .zero
+		var point1: CGPoint = .zero
+		var point2: CGPoint = .zero
 		
-		if let p = p as? CGPoint, p1 = p1 as? CGPoint, p2 = p2 as? CGPoint {
+		if let p = p as? CGPoint, let p1 = p1 as? CGPoint, let p2 = p2 as? CGPoint {
 			point = p
 			point1 = p1
 			point2 = p2
-		} else if let p = p as? CLLocationCoordinate2D, p1 = p1 as? CLLocationCoordinate2D, p2 = p2 as? CLLocationCoordinate2D {
-			point = CGPointMake( CGFloat(p.latitude), CGFloat(p.longitude) )
-			point1 = CGPointMake( CGFloat(p1.latitude), CGFloat(p1.longitude) )
-			point2 = CGPointMake( CGFloat(p2.latitude), CGFloat(p2.longitude) )
+		} else if let p = p as? CLLocationCoordinate2D, let p1 = p1 as? CLLocationCoordinate2D, let p2 = p2 as? CLLocationCoordinate2D {
+            point = CGPoint(x: CGFloat(p.latitude), y: CGFloat(p.longitude) )
+			point1 = CGPoint(x: CGFloat(p1.latitude), y: CGFloat(p1.longitude) )
+			point2 = CGPoint(x: CGFloat(p2.latitude), y: CGFloat(p2.longitude) )
 		}
 		var x = point1.x
 		var y = point1.y
@@ -153,13 +153,13 @@ public class SwiftSimplify {
 		return Float( (dx * dx) + (dy * dy) )
 	}
 	
-	private class func getSqDist<T>(pointA: T, pointB: T) -> Float {
+	private class func getSqDist<T>(_ pointA: T, pointB: T) -> Float {
 		// square distance between 2 points
-		if let pointA = pointA as? CGPoint, pointB = pointB as? CGPoint {
+		if let pointA = pointA as? CGPoint, let pointB = pointB as? CGPoint {
 			let dx = pointA.x - pointB.x
 			let dy = pointA.y - pointB.y
 			return Float( (dx * dx) + (dy * dy) )
-		} else if let pointA = pointA as? CLLocationCoordinate2D, pointB = pointB as? CLLocationCoordinate2D {
+		} else if let pointA = pointA as? CLLocationCoordinate2D, let pointB = pointB as? CLLocationCoordinate2D {
 			let dx = pointA.latitude - pointB.latitude
 			let dy = pointA.longitude - pointB.longitude
 			return Float ( (dx * dx) + (dy * dy) )
