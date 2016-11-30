@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
   spec.homepage         = 'https://github.com/malcommac/SwiftSimplify'
   spec.authors          = { "daniele margutti" => "me@danielemargutti.com" }
   spec.summary          = 'Tiny high-performance Swift polyline simplification library'
-  spec.source           = { :git => "https://github.com/malcommac/SwiftSimplify.git", :tag => '0.1.2' }
+  spec.source           = { :git => "https://github.com/malcommac/SwiftSimplify.git", :tag => '0.2.0' }
   spec.source_files     = 'Pod/Classes/**/*'
   spec.framework        = 'CoreLocation'
   spec.requires_arc     = true
