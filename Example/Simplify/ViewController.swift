@@ -15,19 +15,19 @@ class ViewController: UIViewController {
 	@IBOutlet var hQuality:			UISwitch?
 	@IBOutlet var resultsLabel:		UILabel?
 	@IBOutlet var toleranceLabel:	UILabel?
-	private var initialPoints:		[CGPoint]?
+	fileprivate var initialPoints:		[CGPoint]?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
 		// Just load some example's data from a JSON file.
-		let exampleJSONPath = NSBundle.mainBundle().pathForResource("1k", ofType: "json")
-		let JSONData = try? NSData(contentsOfFile:exampleJSONPath!, options: [])
-		let JSONObj: AnyObject? = try? NSJSONSerialization.JSONObjectWithData(JSONData!, options: NSJSONReadingOptions.MutableContainers)
+		let exampleJSONPath = Bundle.main.path(forResource: "1k", ofType: "json")
+		let JSONData = try? Data(contentsOf: URL(fileURLWithPath: exampleJSONPath!), options: [])
+		let JSONObj: AnyObject? = try! JSONSerialization.jsonObject(with: JSONData!, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject?
 		
 		if let JSONObj = JSONObj as? NSArray {
 			// SwiftSimplify can take an array of [CGPoint] or [CLLocationCoordinate2D]
@@ -40,22 +40,22 @@ class ViewController: UIViewController {
 		}
 	}
 	
-	@IBAction func didChangeHQParameter(sender: UISwitch) {
+	@IBAction func didChangeHQParameter(_ sender: UISwitch) {
 		refresh()
 	}
 	
-	@IBAction func didChangeValue(sender: UISlider) {
+	@IBAction func didChangeValue(_ sender: UISlider) {
 		refresh()
 	}
 	
 	func refresh() {
 		let tolerance = Float(rSlider!.value)
-		let hQ = (hQuality!.state == UIControlState.Selected ? true : false)
+		let hQ = (hQuality!.state == UIControlState.selected ? true : false)
 		
 		toleranceLabel!.text = "Tolerance: \(rSlider!.value) px"
 		
 		// Call our library in background thread
-		dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) { // 1
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async { // 1
 			let initialTime = CACurrentMediaTime();
 			
 			// Here is the magic!
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
 			let elapsedTime = round(1000 * (CACurrentMediaTime() - initialTime)) / 1000
 			let decrement = 100.0 - ((Float(simplified.count) / Float(self.initialPoints!.count)) * 100.0)
 			
-			dispatch_async(dispatch_get_main_queue()) {
+			DispatchQueue.main.async {
 				// Update the rendering view and print some fancy stuff
 				self.rView!.renderPoints(simplified)
 				
@@ -78,35 +78,18 @@ class ViewController: UIViewController {
 		}
 	}
 	
-	func convertJSONToCGPoints(list: NSArray) -> [CGPoint] {
+	func convertJSONToCGPoints(_ list: NSArray) -> [CGPoint] {
 		var points: [CGPoint] = []
 		for idx in 0 ..< list.count {
 			if let itemDict = list[idx] as? NSDictionary {
-				if let x = itemDict["x"] as? NSNumber, y = itemDict["y"] as? NSNumber {
-					points.append( CGPointMake( CGFloat(x.floatValue), CGFloat(y.floatValue)) )
+				if let x = itemDict["x"] as? NSNumber, let y = itemDict["y"] as? NSNumber {
+					points.append( CGPoint( x: CGFloat(x.floatValue), y: CGFloat(y.floatValue)) )
 				}
 			}
 		}
 		return points
 	}
 	
-	/*
-	func convertJSONToCLLocationCoordinates(list: NSArray) -> [CLLocationCoordinate2D] {
-		var points: [CLLocationCoordinate2D] = []
-		for (var idx = 0; idx < list.count; idx++ ) {
-			if let itemDict = list[idx] as? NSDictionary {
-				if let x = itemDict["x"] as? NSNumber, y = itemDict["y"] as? NSNumber {
-					var loc = CLLocationCoordinate2DMake(CLLocationDegrees(x.floatValue), CLLocationDegrees(y.floatValue))
-					points.append(loc)
-				}
-			}
-		}
-		return points
-	}
-	*/
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-	}
 
 
 }

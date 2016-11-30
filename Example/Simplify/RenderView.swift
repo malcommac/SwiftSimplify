@@ -12,17 +12,17 @@ import UIKit
 class RenderView: UIView {
 	var points: [CGPoint]?
 	
-	func renderPoints(p: [CGPoint]) {
+	func renderPoints(_ p: [CGPoint]) {
 		points = p
 		self.setNeedsDisplay()
 	}
 	
-	override func drawRect(rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		// Just draw our points
 		let context = UIGraphicsGetCurrentContext()
 		
-		CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
-		CGContextSetLineWidth(context, 1.0)
+		context?.setStrokeColor(UIColor.red.cgColor)
+		context?.setLineWidth(1.0)
 
 		if points != nil {
 			let start = points!.first!.x
@@ -38,11 +38,11 @@ class RenderView: UIView {
 			for i in 0 ..< (points!.count-1) {
 				let p1 = points![i]
 				let p2 = points![i+1]
-				CGContextMoveToPoint(context, p1.x-start, p1.y-minY)
-				CGContextAddLineToPoint(context, p2.x-start, p2.y-minY)
-				CGContextStrokePath(context)
+				context?.move(to: CGPoint(x: p1.x-start, y: p1.y-minY))
+				context?.addLine(to: CGPoint(x: p2.x-start, y: p2.y-minY))
+				context?.strokePath()
 			}
-			CGContextDrawPath(context, CGPathDrawingMode.Stroke);
+			context?.drawPath(using: CGPathDrawingMode.stroke);
 		}
 	}
 	
