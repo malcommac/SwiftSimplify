@@ -17,6 +17,20 @@ Polyline simplification dramatically reduces the number of points in a polyline 
 
 ![SwiftSimplify](https://raw.githubusercontent.com/malcommac/SwiftSimplify/master/screenshot.png)
 
+## You also may like
+-------
+
+Do you like `SwiftRichString`? I'm also working on several other opensource libraries.
+
+Take a look here:
+
+* **[SwiftDate](https://github.com/malcommac/SwiftDate)** - Full features Dates & TimeZone management for iOS,macOS,tvOS and watchOS
+* **[Hydra](https://github.com/malcommac/Hydra)** - Promise, Async/Await on sterioids!
+* **[SwiftLocation](https://github.com/malcommac/SwiftLocation)** - CoreLocation and Beacon Monitoring on steroid!
+* **[SwiftScanner](https://github.com/malcommac/SwiftScanner)** - String scanner in pure Swift with full unicode support
+* **[SwiftSimplify](https://github.com/malcommac/SwiftSimplify)** - Tiny high-performance Swift Polyline Simplification Library
+* **[SwiftMsgPack](https://github.com/malcommac/SwiftMsgPack)** - MsgPack Encoder/Decoder in Swit
+
 ## Requirements
 * iOS 8.0+ / Mac OS X 10.10+
 * Xcode 8.0
