@@ -52,9 +52,9 @@ pod "SwiftSimplify"
 Usage is pretty straightforward: in fact you need just call the SwiftSimplify's class method simplify by passing your configuration.
 Allowed parameters are:
 ```swift
-class func simplify<T>(points: [T], tolerance: Float?, highQuality: Bool = false) -> [T];
+class func simplify<T:SimplifyValue>(points: [T], tolerance: Float?, highQuality: Bool = false) -> [T];
 ```
-* ```points```: An array of points. SwiftSimplify supports Swift's generic so you can pass an array of CGPoint (```[CGPoint]```) or array of CLLocationCoordinate2D (```[CLLocationCoordinate2D```). 
+* ```points```: An array of points. SwiftSimplify supports Swift's generic so you can pass an array of SimplifyValue (```[SimplifyValue]```). 
 * ```tolerance```: *(1 by default)* Affects the amount of simplification (in the same metric as the point coordinates)
 * ```highQuality```: *(false by default)* Excludes distance-based preprocessing step which leads to highest quality simplification but runs ~10-20 times slower.
 
