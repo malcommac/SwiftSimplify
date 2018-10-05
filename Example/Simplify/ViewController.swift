@@ -50,7 +50,7 @@ class ViewController: UIViewController {
 	
 	func refresh() {
 		let tolerance = Float(rSlider!.value)
-		let hQ = (hQuality!.state == UIControlState.selected ? true : false)
+		let hQ = (hQuality!.state == .selected ? true : false)
 		
 		toleranceLabel!.text = "Tolerance: \(rSlider!.value) px"
 		
