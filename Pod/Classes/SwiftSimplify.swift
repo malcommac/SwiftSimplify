@@ -53,7 +53,7 @@ open class SwiftSimplify {
 	- returns: Returns an array of simplified points
 	*/
 	open class func simplify<T>(_ points: [T], tolerance: Float?, highQuality: Bool = false) -> [T] {
-		if points.count == 2 {
+		if points.count <= 2 {
 			return points
 		}
 		// both algorithms combined for awesome performance
