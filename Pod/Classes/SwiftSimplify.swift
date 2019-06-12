@@ -53,9 +53,8 @@ open class SwiftSimplify {
 	- returns: Returns an array of simplified points
 	*/
 	open class func simplify<T>(_ points: [T], tolerance: Float?, highQuality: Bool = false) -> [T] {
-		if points.count == 2 {
-			return points
-		}
+		guard points.count > 1 else { return points }
+
 		// both algorithms combined for awesome performance
 		let sqTolerance = (tolerance != nil ? tolerance! * tolerance! : 1.0)
 		var result: [T] = (highQuality == true ? points : simplifyRadialDistance(points, tolerance: sqTolerance))
@@ -85,15 +84,20 @@ open class SwiftSimplify {
 	}
 	
 	fileprivate class func simplifyDouglasPeucker<T>(_ points: [T], tolerance: Float!) -> [T] {
+        guard points.count > 1 else { return [] }
+        guard let first = points.first else { return [] }
+
 		// simplification using Ramer-Douglas-Peucker algorithm
 		let last: Int = points.count - 1
-		var simplified: [T] = [points.first!]
+		var simplified: [T] = [first]
 		simplifyDPStep(points, first: 0, last: last, tolerance: tolerance, simplified: &simplified)
 		simplified.append(points[last])
 		return simplified
 	}
 	
 	fileprivate class func simplifyDPStep<T>(_ points: [T], first: Int, last: Int, tolerance: Float, simplified: inout [T]) {
+        guard last > first else { return }
+
 		var maxSqDistance = tolerance
 		var index = 0
 		
