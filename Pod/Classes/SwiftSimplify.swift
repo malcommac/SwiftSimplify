@@ -32,13 +32,36 @@
 import UIKit
 import CoreLocation
 
-func equalsPoints<T>(_ pointA: T, pointB: T) -> Bool {
-	if let pointA = pointA as? CGPoint, let pointB = pointB as? CGPoint {
-		return (pointA.x == pointB.x && pointA.y == pointB.y)
-	} else if let pointA = pointA as? CLLocationCoordinate2D, let pointB = pointB as? CLLocationCoordinate2D {
-		return ( pointA.latitude == pointB.latitude && pointA.longitude == pointB.longitude )
-	}
-	return false
+public protocol SimplifyValue {
+    
+    var xValue: Double { get }
+    var yValue: Double { get }
+}
+
+func equalsPoints<T: SimplifyValue>(lhs: T, rhs: T) -> Bool {
+    return lhs.xValue == rhs.xValue && lhs.yValue == rhs.yValue
+}
+
+extension CGPoint: SimplifyValue {
+    
+    public var xValue: Double {
+        return Double(x)
+    }
+    
+    public var yValue: Double {
+        return Double(y)
+    }
+}
+
+extension CLLocationCoordinate2D: SimplifyValue {
+    
+    public var xValue: Double {
+        return latitude
+    }
+
+    public var yValue: Double {
+        return longitude
+    }
 }
 
 open class SwiftSimplify {
@@ -52,9 +75,8 @@ open class SwiftSimplify {
 	
 	- returns: Returns an array of simplified points
 	*/
-	open class func simplify<T>(_ points: [T], tolerance: Float?, highQuality: Bool = false) -> [T] {
+    open class func simplify<T:SimplifyValue>(_ points: [T], tolerance: Float?, highQuality: Bool = false) -> [T] {
 		guard points.count > 1 else { return points }
-
 		// both algorithms combined for awesome performance
 		let sqTolerance = (tolerance != nil ? tolerance! * tolerance! : 1.0)
 		var result: [T] = (highQuality == true ? points : simplifyRadialDistance(points, tolerance: sqTolerance))
@@ -62,7 +84,7 @@ open class SwiftSimplify {
 		return result
 	}
 	
-	fileprivate class func simplifyRadialDistance<T>(_ points: [T], tolerance: Float!) -> [T] {
+    fileprivate class func simplifyRadialDistance<T:SimplifyValue>(_ points: [T], tolerance: Float!) -> [T] {
 		var prevPoint: T = points.first!
 		var newPoints: [T] = [prevPoint]
 		var point: T = points[1]
@@ -76,14 +98,14 @@ open class SwiftSimplify {
 			}
 		}
 		
-		if equalsPoints(prevPoint, pointB: point) == false {
-			newPoints.append(point)
-		}
+        if !equalsPoints(lhs: prevPoint, rhs: point) {
+            newPoints.append(point)
+        }
 		
 		return newPoints
 	}
 	
-	fileprivate class func simplifyDouglasPeucker<T>(_ points: [T], tolerance: Float!) -> [T] {
+    fileprivate class func simplifyDouglasPeucker<T:SimplifyValue>(_ points: [T], tolerance: Float!) -> [T] {
         guard points.count > 1 else { return [] }
         guard let first = points.first else { return [] }
 
@@ -95,7 +117,7 @@ open class SwiftSimplify {
 		return simplified
 	}
 	
-	fileprivate class func simplifyDPStep<T>(_ points: [T], first: Int, last: Int, tolerance: Float, simplified: inout [T]) {
+    fileprivate class func simplifyDPStep<T:SimplifyValue>(_ points: [T], first: Int, last: Int, tolerance: Float, simplified: inout [T]) {
         guard last > first else { return }
 
 		var maxSqDistance = tolerance
@@ -120,56 +142,42 @@ open class SwiftSimplify {
 		}
 	}
 	
-	fileprivate class func getSQSegDist<T>(point p: T, point1 p1: T, point2 p2: T) -> Float {
-		// square distance from a point to a segment
-		var point: CGPoint = CGPoint.zero
-		var point1: CGPoint = CGPoint.zero
-		var point2: CGPoint = CGPoint.zero
-		
-		if let p = p as? CGPoint, let p1 = p1 as? CGPoint, let p2 = p2 as? CGPoint {
-			point = p
-			point1 = p1
-			point2 = p2
-		} else if let p = p as? CLLocationCoordinate2D, let p1 = p1 as? CLLocationCoordinate2D, let p2 = p2 as? CLLocationCoordinate2D {
-			point = CGPoint( x: CGFloat(p.latitude), y: CGFloat(p.longitude) )
-			point1 = CGPoint( x: CGFloat(p1.latitude), y: CGFloat(p1.longitude) )
-			point2 = CGPoint( x: CGFloat(p2.latitude), y: CGFloat(p2.longitude) )
-		}
-		var x = point1.x
-		var y = point1.y
-		var dx = point2.x - x
-		var dy = point2.y - y
+    // square distance from a point to a segment
+    fileprivate class func getSQSegDist<T:SimplifyValue>(point p: T, point1 p1: T, point2 p2: T) -> Float {
+        
+		var x = p1.xValue
+		var y = p1.yValue
+		var dx = p2.xValue - x
+		var dy = p2.yValue - y
 		
 		if dx != 0 || dy != 0 {
-			let t = ( (point.x - x) * dx + (point.y - y) * dy ) / ( (dx * dx) + (dy * dy) )
+			let t = ( (p.xValue - x) * dx + (p.yValue - y) * dy ) / ( (dx * dx) + (dy * dy) )
 			if t > 1 {
-				x = point2.x
-				y = point2.y
+				x = p2.xValue
+				y = p2.yValue
 			} else if t > 0 {
 				x += dx * t
 				y += dy * t
 			}
 		}
 		
-		dx = point.x - x
-		dy = point.y - y
+		dx = p.xValue - x
+		dy = p.yValue - y
 		
 		return Float( (dx * dx) + (dy * dy) )
 	}
-	
-	fileprivate class func getSqDist<T>(_ pointA: T, pointB: T) -> Float {
-		// square distance between 2 points
-		if let pointA = pointA as? CGPoint, let pointB = pointB as? CGPoint {
-			let dx = pointA.x - pointB.x
-			let dy = pointA.y - pointB.y
-			return Float( (dx * dx) + (dy * dy) )
-		} else if let pointA = pointA as? CLLocationCoordinate2D, let pointB = pointB as? CLLocationCoordinate2D {
-			let dx = pointA.latitude - pointB.latitude
-			let dy = pointA.longitude - pointB.longitude
-			return Float ( (dx * dx) + (dy * dy) )
-		} else {
-			return 0.0
-		}
+
+    
+    /// Calculate square distance
+    ///
+    /// - Parameters:
+    ///   - pointA: x point
+    ///   - pointB: y point
+    /// - Returns: square distance between 2 points
+    fileprivate class func getSqDist<T:SimplifyValue>(_ pointA: T, pointB: T) -> Float {
+        let dx = pointA.xValue - pointB.xValue
+        let dy = pointA.yValue - pointB.yValue
+        return Float((dx * dx) + (dy * dy))
 	}
 	
 }
