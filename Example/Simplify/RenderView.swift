@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 
 class RenderView: UIView {
-	var points: [CGPoint]?
+	var path: CGPath?
 	
+/*
 	func renderPoints(_ p: [CGPoint]) {
 		points = p
 		self.setNeedsDisplay()
@@ -45,5 +46,21 @@ class RenderView: UIView {
 			context?.drawPath(using: CGPathDrawingMode.stroke);
 		}
 	}
+ */
+	func renderPath(path: CGPath) {
+		self.path = path
+		self.setNeedsDisplay()
+	}
+	
+	override func drawRect(rect: CGRect) {
+        guard let path = path else { return }
+		// Just draw our path
+        let context = UIGraphicsGetCurrentContext()
+        
+        CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
+        CGContextSetLineWidth(context, 1.0)
+        CGContextAddPath(context, path)
+        CGContextStrokePath(context)
+    }
 	
 }
