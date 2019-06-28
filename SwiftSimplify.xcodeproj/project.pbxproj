@@ -19,24 +19,18 @@
 		640AC16822C674590048F1E9 /* UIBezierPath+CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644681BA22C67116004D455B /* UIBezierPath+CGPoint.swift */; };
 		640AC16A22C6753C0048F1E9 /* 1k.json in Resources */ = {isa = PBXBuildFile; fileRef = 640AC16922C6753C0048F1E9 /* 1k.json */; };
 		644681B222C66C6B004D455B /* Point2DRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644681B122C66C6B004D455B /* Point2DRepresentable.swift */; };
-		644681B322C66C6B004D455B /* Point2DRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644681B122C66C6B004D455B /* Point2DRepresentable.swift */; };
 		644681B422C66C6B004D455B /* Point2DRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644681B122C66C6B004D455B /* Point2DRepresentable.swift */; };
 		644681B522C66C6B004D455B /* Point2DRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644681B122C66C6B004D455B /* Point2DRepresentable.swift */; };
 		644681B722C66D8A004D455B /* SimplifyTestPoints.json in Resources */ = {isa = PBXBuildFile; fileRef = 644681B622C66D8A004D455B /* SimplifyTestPoints.json */; };
-		644681B822C66D8A004D455B /* SimplifyTestPoints.json in Resources */ = {isa = PBXBuildFile; fileRef = 644681B622C66D8A004D455B /* SimplifyTestPoints.json */; };
 		644681B922C66D8A004D455B /* SimplifyTestPoints.json in Resources */ = {isa = PBXBuildFile; fileRef = 644681B622C66D8A004D455B /* SimplifyTestPoints.json */; };
 		644681BB22C67116004D455B /* UIBezierPath+CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644681BA22C67116004D455B /* UIBezierPath+CGPoint.swift */; };
-		644681BC22C67116004D455B /* UIBezierPath+CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644681BA22C67116004D455B /* UIBezierPath+CGPoint.swift */; };
 		644681BD22C67116004D455B /* UIBezierPath+CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644681BA22C67116004D455B /* UIBezierPath+CGPoint.swift */; };
 		644681BE22C67116004D455B /* UIBezierPath+CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644681BA22C67116004D455B /* UIBezierPath+CGPoint.swift */; };
 		8933C7851EB5B820000D00A4 /* SwiftSimplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* SwiftSimplify.swift */; };
-		8933C7861EB5B820000D00A4 /* SwiftSimplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* SwiftSimplify.swift */; };
 		8933C7871EB5B820000D00A4 /* SwiftSimplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* SwiftSimplify.swift */; };
 		8933C7881EB5B820000D00A4 /* SwiftSimplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7841EB5B820000D00A4 /* SwiftSimplify.swift */; };
 		8933C78E1EB5B82C000D00A4 /* SwiftSimplifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* SwiftSimplifyTests.swift */; };
-		8933C78F1EB5B82C000D00A4 /* SwiftSimplifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* SwiftSimplifyTests.swift */; };
 		8933C7901EB5B82D000D00A4 /* SwiftSimplifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* SwiftSimplifyTests.swift */; };
-		DD7502881C68FEDE006590AF /* SwiftSimplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* SwiftSimplify.framework */; };
 		DD7502921C690C7A006590AF /* SwiftSimplify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* SwiftSimplify.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,13 +41,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 52D6D97B1BEFF229002C0205;
 			remoteInfo = SwiftSimplify;
-		};
-		DD7502801C68FCFC006590AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52D6D9731BEFF229002C0205 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 52D6DA0E1BF000BD002C0205;
-			remoteInfo = "SwiftSimplify-macOS";
 		};
 		DD7502931C690C7A006590AF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -69,7 +56,6 @@
 		52D6D9861BEFF229002C0205 /* SwiftSimplify-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftSimplify-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9E21BEFFF6E002C0205 /* SwiftSimplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSimplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9F01BEFFFBE002C0205 /* SwiftSimplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSimplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		52D6DA0F1BF000BD002C0205 /* SwiftSimplify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSimplify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		640AC15222C674150048F1E9 /* iOSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		640AC15422C674160048F1E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		640AC15622C674160048F1E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +72,6 @@
 		8933C7891EB5B82A000D00A4 /* SwiftSimplifyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSimplifyTests.swift; sourceTree = "<group>"; };
 		AD2FAA261CD0B6D800659CF4 /* SwiftSimplify.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SwiftSimplify.plist; sourceTree = "<group>"; };
 		AD2FAA281CD0B6E100659CF4 /* SwiftSimplifyTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SwiftSimplifyTests.plist; sourceTree = "<group>"; };
-		DD75027A1C68FCFC006590AF /* SwiftSimplify-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftSimplify-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD75028D1C690C7A006590AF /* SwiftSimplify-tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftSimplify-tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -120,25 +105,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52D6DA0B1BF000BD002C0205 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		640AC14F22C674150048F1E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DD7502771C68FCFC006590AF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DD7502881C68FEDE006590AF /* SwiftSimplify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,8 +141,6 @@
 				52D6D9861BEFF229002C0205 /* SwiftSimplify-iOS Tests.xctest */,
 				52D6D9E21BEFFF6E002C0205 /* SwiftSimplify.framework */,
 				52D6D9F01BEFFFBE002C0205 /* SwiftSimplify.framework */,
-				52D6DA0F1BF000BD002C0205 /* SwiftSimplify.framework */,
-				DD75027A1C68FCFC006590AF /* SwiftSimplify-macOS Tests.xctest */,
 				DD75028D1C690C7A006590AF /* SwiftSimplify-tvOS Tests.xctest */,
 				640AC15222C674150048F1E9 /* iOSDemoApp.app */,
 			);
@@ -263,13 +231,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52D6DA0C1BF000BD002C0205 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -345,24 +306,6 @@
 			productReference = 52D6D9F01BEFFFBE002C0205 /* SwiftSimplify.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		52D6DA0E1BF000BD002C0205 /* SwiftSimplify-macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 52D6DA201BF000BD002C0205 /* Build configuration list for PBXNativeTarget "SwiftSimplify-macOS" */;
-			buildPhases = (
-				52D6DA0A1BF000BD002C0205 /* Sources */,
-				52D6DA0B1BF000BD002C0205 /* Frameworks */,
-				52D6DA0C1BF000BD002C0205 /* Headers */,
-				52D6DA0D1BF000BD002C0205 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "SwiftSimplify-macOS";
-			productName = "SwiftSimplify-macOS";
-			productReference = 52D6DA0F1BF000BD002C0205 /* SwiftSimplify.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		640AC15122C674150048F1E9 /* iOSDemoApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 640AC16322C674170048F1E9 /* Build configuration list for PBXNativeTarget "iOSDemoApp" */;
@@ -379,24 +322,6 @@
 			productName = iOSDemoApp;
 			productReference = 640AC15222C674150048F1E9 /* iOSDemoApp.app */;
 			productType = "com.apple.product-type.application";
-		};
-		DD7502791C68FCFC006590AF /* SwiftSimplify-macOS Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DD7502821C68FCFC006590AF /* Build configuration list for PBXNativeTarget "SwiftSimplify-macOS Tests" */;
-			buildPhases = (
-				DD7502761C68FCFC006590AF /* Sources */,
-				DD7502771C68FCFC006590AF /* Frameworks */,
-				DD7502781C68FCFC006590AF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DD7502811C68FCFC006590AF /* PBXTargetDependency */,
-			);
-			name = "SwiftSimplify-macOS Tests";
-			productName = "SwiftSimplify-OS Tests";
-			productReference = DD75027A1C68FCFC006590AF /* SwiftSimplify-macOS Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		DD75028C1C690C7A006590AF /* SwiftSimplify-tvOS Tests */ = {
 			isa = PBXNativeTarget;
@@ -442,17 +367,9 @@
 						CreatedOnToolsVersion = 7.1;
 						LastSwiftMigration = 1020;
 					};
-					52D6DA0E1BF000BD002C0205 = {
-						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 1020;
-					};
 					640AC15122C674150048F1E9 = {
 						CreatedOnToolsVersion = 10.2.1;
 						ProvisioningStyle = Automatic;
-					};
-					DD7502791C68FCFC006590AF = {
-						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 1020;
 					};
 					DD75028C1C690C7A006590AF = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -474,11 +391,9 @@
 			projectRoot = "";
 			targets = (
 				52D6D97B1BEFF229002C0205 /* SwiftSimplify-iOS */,
-				52D6DA0E1BF000BD002C0205 /* SwiftSimplify-macOS */,
 				52D6D9E11BEFFF6E002C0205 /* SwiftSimplify-watchOS */,
 				52D6D9EF1BEFFFBE002C0205 /* SwiftSimplify-tvOS */,
 				52D6D9851BEFF229002C0205 /* SwiftSimplify-iOS Tests */,
-				DD7502791C68FCFC006590AF /* SwiftSimplify-macOS Tests */,
 				DD75028C1C690C7A006590AF /* SwiftSimplify-tvOS Tests */,
 				640AC15122C674150048F1E9 /* iOSDemoApp */,
 			);
@@ -515,13 +430,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52D6DA0D1BF000BD002C0205 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		640AC15022C674150048F1E9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -530,14 +438,6 @@
 				640AC15C22C674170048F1E9 /* Assets.xcassets in Resources */,
 				640AC15A22C674160048F1E9 /* Main.storyboard in Resources */,
 				640AC16A22C6753C0048F1E9 /* 1k.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DD7502781C68FCFC006590AF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				644681B822C66D8A004D455B /* SimplifyTestPoints.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,16 +490,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52D6DA0A1BF000BD002C0205 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8933C7861EB5B820000D00A4 /* SwiftSimplify.swift in Sources */,
-				644681BC22C67116004D455B /* UIBezierPath+CGPoint.swift in Sources */,
-				644681B322C66C6B004D455B /* Point2DRepresentable.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		640AC14E22C674150048F1E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -610,14 +500,6 @@
 				640AC15522C674160048F1E9 /* AppDelegate.swift in Sources */,
 				640AC16822C674590048F1E9 /* UIBezierPath+CGPoint.swift in Sources */,
 				640AC16522C674290048F1E9 /* RenderView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DD7502761C68FCFC006590AF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8933C78F1EB5B82C000D00A4 /* SwiftSimplifyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,11 +518,6 @@
 			isa = PBXTargetDependency;
 			target = 52D6D97B1BEFF229002C0205 /* SwiftSimplify-iOS */;
 			targetProxy = 52D6D9881BEFF229002C0205 /* PBXContainerItemProxy */;
-		};
-		DD7502811C68FCFC006590AF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 52D6DA0E1BF000BD002C0205 /* SwiftSimplify-macOS */;
-			targetProxy = DD7502801C68FCFC006590AF /* PBXContainerItemProxy */;
 		};
 		DD7502941C690C7A006590AF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -943,53 +820,6 @@
 			};
 			name = Release;
 		};
-		52D6DA211BF000BD002C0205 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Configs/SwiftSimplify.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SwiftSimplify.SwiftSimplify-macOS";
-				PRODUCT_NAME = SwiftSimplify;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		52D6DA221BF000BD002C0205 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Configs/SwiftSimplify.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SwiftSimplify.SwiftSimplify-macOS";
-				PRODUCT_NAME = SwiftSimplify;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		640AC16122C674170048F1E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1038,37 +868,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		DD7502831C68FCFC006590AF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Configs/SwiftSimplifyTests.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SwiftSimplify.SwiftSimplify-macOS-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		DD7502841C68FCFC006590AF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Configs/SwiftSimplifyTests.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SwiftSimplify.SwiftSimplify-macOS-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1147,29 +946,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52D6DA201BF000BD002C0205 /* Build configuration list for PBXNativeTarget "SwiftSimplify-macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				52D6DA211BF000BD002C0205 /* Debug */,
-				52D6DA221BF000BD002C0205 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		640AC16322C674170048F1E9 /* Build configuration list for PBXNativeTarget "iOSDemoApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				640AC16122C674170048F1E9 /* Debug */,
 				640AC16222C674170048F1E9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DD7502821C68FCFC006590AF /* Build configuration list for PBXNativeTarget "SwiftSimplify-macOS Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DD7502831C68FCFC006590AF /* Debug */,
-				DD7502841C68FCFC006590AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
