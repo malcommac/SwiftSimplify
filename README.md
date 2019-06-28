@@ -1,5 +1,5 @@
 <p align="center" >
-  <img src="https://raw.githubusercontent.com/malcommac/SwiftSimplify/master/logo.png" width=200px height=205px alt="SwiftSimplify" title="SwiftSimplify">
+<img src="./logo.png" height=250px alt="SwiftSimplify" title="SwiftSimplify">
 </p>
 
 [![CI Status](http://img.shields.io/travis/daniele margutti/SwiftSimplify.svg?style=flat)](https://travis-ci.org/daniele margutti/SwiftSimplify)
@@ -15,26 +15,11 @@ It uses a combination of [Douglas-Peucker](http://en.wikipedia.org/wiki/Ramer-Do
 
 Polyline simplification dramatically reduces the number of points in a polyline while retaining its shape, giving a huge performance boost when processing it and also reducing visual noise. For example, it's essential when rendering a 70k-points line chart or a map route in the browser using MapKit.
 
-![SwiftSimplify](https://raw.githubusercontent.com/malcommac/SwiftSimplify/master/screenshot.png)
-
-## You also may like
--------
-
-Do you like `SwiftRichString`? I'm also working on several other opensource libraries.
-
-Take a look here:
-
-* **[SwiftDate](https://github.com/malcommac/SwiftDate)** - Full features Dates & TimeZone management for iOS,macOS,tvOS and watchOS
-* **[Hydra](https://github.com/malcommac/Hydra)** - Promise, Async/Await on sterioids!
-* **[SwiftLocation](https://github.com/malcommac/SwiftLocation)** - CoreLocation and Beacon Monitoring on steroid!
-* **[SwiftScanner](https://github.com/malcommac/SwiftScanner)** - String scanner in pure Swift with full unicode support
-* **[SwiftSimplify](https://github.com/malcommac/SwiftSimplify)** - Tiny high-performance Swift Polyline Simplification Library
-* **[SwiftMsgPack](https://github.com/malcommac/SwiftMsgPack)** - MsgPack Encoder/Decoder in Swit
-
+![SwiftSimplify](./SwiftSimplify.gif)
+  
 ## Requirements
-* iOS 8.0+ / Mac OS X 10.10+
-* Xcode 8.0
-* Swift 3.0
+* iOS 8.0, macOS 10.9, watchOS 2.0, tvOS 9.0
+* Swift 5.x+
 
 ## Communication
 - If you **found a bug**, open an issue.
@@ -49,19 +34,26 @@ it, simply add the following line to your Podfile:
 pod "SwiftSimplify"
 ```
 ## Usage
-Usage is pretty straightforward: in fact you need just call the SwiftSimplify's class method simplify by passing your configuration.
-Allowed parameters are:
+Usage is pretty straightforward: in fact you need just call the SwiftSimplify's class method simplify by passing your configuration:
+
 ```swift
-class func simplify<T:SimplifyValue>(points: [T], tolerance: Float?, highQuality: Bool = false) -> [T];
+let allPoints: [Point2DRepresentable] = ...
+let simplifiedPoints = SwiftSimplify.simplify(allPoints, tolerance: tolerance)
 ```
-* ```points```: An array of points. SwiftSimplify supports Swift's generic so you can pass an array of SimplifyValue (```[SimplifyValue]```). 
+
+Allowed parameters are:
+
+* ```points```: An array of points. SwiftSimplify supports Swift's generic so you can pass an array of objects which are conforms to `Point2DRepresentable` protocol (both `CGPoint` and `CLLocationCoordinate2D` objects supports it).
 * ```tolerance```: *(1 by default)* Affects the amount of simplification (in the same metric as the point coordinates)
 * ```highQuality```: *(false by default)* Excludes distance-based preprocessing step which leads to highest quality simplification but runs ~10-20 times slower.
 
 ## Author
 
 Daniele Margutti, [me@danielemargutti.com](mailto:me@danielemargutti)
-You can reach me on twitter [@danielemargutti](http://www.twitter.com/danielemargutti). My web site is [danielemargutti.com](http://www.danielemargutti.com)
+
+You can reach me on twitter [@danielemargutti](http://www.twitter.com/danielemargutti). 
+
+My web site is [danielemargutti.com](http://www.danielemargutti.com)
 
 ## License
 
