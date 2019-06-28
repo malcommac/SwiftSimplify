@@ -2,16 +2,18 @@
 <img src="./logo.png" height=250px alt="SwiftSimplify" title="SwiftSimplify">
 </p>
 
-[![CI Status](http://img.shields.io/travis/daniele margutti/SwiftSimplify.svg?style=flat)](https://travis-ci.org/daniele margutti/SwiftSimplify)
-[![Version](https://img.shields.io/cocoapods/v/SwiftSimplify.svg?style=flat)](http://cocoapods.org/pods/SwiftSimplify)
+![](https://img.shields.io/cocoapods/v/SwiftSimplify.svg)
+![](https://img.shields.io/cocoapods/p/SwiftSimplify.svg)
+![](https://img.shields.io/badge/carthage-compatible-brightgreen.svg)
+[](https://img.shields.io/travis/malcommac/SwiftSimplify.svg)
+[![Build Status](https://travis-ci.org/malcommac/SwiftSimplify.svg?branch=master)](https://travis-ci.org/malcommac/SwiftDate)
 [![License](https://img.shields.io/cocoapods/l/SwiftSimplify.svg?style=flat)](http://cocoapods.org/pods/SwiftSimplify)
-[![Platform](https://img.shields.io/cocoapods/p/SwiftSimplify.svg?style=flat)](http://cocoapods.org/pods/SwiftSimplify)
-
-<p align="center" >★★ <b>Star our github repository to help us!</b> ★★</p>
 
 SwiftSimplify is a tiny high-performance Swift polyline simplification library ported from Javascript's [Simplify.js](http://mourner.github.io/simplify-js/). Original work come from [Leaflet](http://leafletjs.com/), a JS interactive maps library by [Vladimir Agafonkin](http://agafonkin.com/en).
 
 It uses a combination of [Douglas-Peucker](http://en.wikipedia.org/wiki/Ramer-Douglas-Peucker_algorithm) and Radial Distance algorithms. Works both on browser and server platforms.
+
+<p align="center" >★★ <b>Star our github repository to help us!</b> ★★</p>
 
 ## Why
 
