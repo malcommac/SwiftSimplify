@@ -22,7 +22,7 @@ Polyline simplification dramatically reduces the number of points in a polyline 
 ![SwiftSimplify](./SwiftSimplify.gif)
   
 ## Requirements
-* iOS 8.0, macOS 10.9, watchOS 2.0, tvOS 9.0
+* iOS 8.0, watchOS 2.0, tvOS 9.0
 * Swift 5.x+
 
 ## Communication
