@@ -37,7 +37,7 @@ import Foundation
 
 public struct SwiftSimplify {
     
-    public static func simplify(_ points: [Point2DRepresentable], tolerance: Float?, highestQuality: Bool = false) -> [Point2DRepresentable] {
+    public static func simplify<P: Point2DRepresentable>(_ points: [P], tolerance: Float?, highestQuality: Bool = false) -> [P] {
         guard points.count > 1 else {
             return points
         }
@@ -49,14 +49,14 @@ public struct SwiftSimplify {
         return result
     }
     
-    private static func simplifyRadialDistance(_ points: [Point2DRepresentable], tolerance: Float) -> [Point2DRepresentable] {
+    private static func simplifyRadialDistance<P: Point2DRepresentable>(_ points: [P], tolerance: Float) -> [P] {
         guard points.count > 2 else {
             return points
         }
         
         var prevPoint = points.first!
         var newPoints = [prevPoint]
-        var currentPoint: Point2DRepresentable!
+        var currentPoint: P!
         
         for i in 1..<points.count {
             currentPoint = points[i]
@@ -73,7 +73,7 @@ public struct SwiftSimplify {
         return newPoints
     }
     
-    private static func simplifyDPStep(_ points: [Point2DRepresentable], first: Int, last: Int, sqTolerance: Float, simplified: inout [Point2DRepresentable]) {
+    private static func simplifyDPStep<P: Point2DRepresentable>(_ points: [P], first: Int, last: Int, sqTolerance: Float, simplified: inout [P]) {
         
         guard last > first else {
             return
@@ -100,7 +100,7 @@ public struct SwiftSimplify {
         }
     }
     
-    private static func simplifyDouglasPeucker(_ points: [Point2DRepresentable], sqTolerance: Float) -> [Point2DRepresentable] {
+    private static func simplifyDouglasPeucker<P: Point2DRepresentable>(_ points: [P], sqTolerance: Float) -> [P] {
         guard points.count > 1 else {
             return []
         }
@@ -117,7 +117,7 @@ public struct SwiftSimplify {
 
 // MARK: - Array Extension
 
-public extension Array where Element == Point2DRepresentable {
+public extension Array where Element: Point2DRepresentable {
     
     func simplify(tolerance: Float? = nil, highestQuality: Bool = true) -> [Element] {
         return SwiftSimplify.simplify(self, tolerance: tolerance, highestQuality: highestQuality)
