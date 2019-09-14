@@ -178,7 +178,8 @@
 				644681B122C66C6B004D455B /* Point2DRepresentable.swift */,
 				644681BA22C67116004D455B /* UIBezierPath+CGPoint.swift */,
 			);
-			path = Sources;
+			name = Sources;
+			path = Sources/SwiftSimplify;
 			sourceTree = "<group>";
 		};
 		8933C7831EB5B7EB000D00A4 /* Tests */ = {
