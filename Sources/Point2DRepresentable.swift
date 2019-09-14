@@ -39,25 +39,25 @@ public protocol Point2DRepresentable {
     
     var cgPoint: CGPoint { get }
     
-    func distanceFrom(_ otherPoint: Point2DRepresentable) -> Float
-    func distanceToSegment(_ p1: Point2DRepresentable, _ p2: Point2DRepresentable) -> Float
+    func distanceFrom(_ otherPoint: Self) -> Float
+    func distanceToSegment(_ p1: Self, _ p2: Self) -> Float
     
-    func equalsTo(_ compare: Point2DRepresentable) -> Bool
+    func equalsTo(_ compare: Self) -> Bool
 }
 
 extension Point2DRepresentable {
     
-    public func equalsTo(_ compare: Point2DRepresentable) -> Bool {
+    public func equalsTo(_ compare: Self) -> Bool {
         return self.xValue == compare.xValue && self.yValue == compare.yValue
     }
     
-    public func distanceFrom(_ otherPoint: Point2DRepresentable) -> Float {
+    public func distanceFrom(_ otherPoint: Self) -> Float {
         let dx = self.xValue - otherPoint.xValue
         let dy = self.yValue - otherPoint.yValue
         return (dx * dx) + (dy * dy)
     }
     
-    public func distanceToSegment(_ p1: Point2DRepresentable, _ p2: Point2DRepresentable) -> Float {
+    public func distanceToSegment(_ p1: Self, _ p2: Self) -> Float {
         var x = p1.xValue
         var y = p1.yValue
         var dx = p2.xValue - x

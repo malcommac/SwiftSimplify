@@ -40,7 +40,7 @@ public extension UIBezierPath {
     ///
     /// - Parameter points: points of the path.
     /// - Returns: smoothed UIBezierPath.
-    static func smoothFromPoints(_ points: [Point2DRepresentable]) -> UIBezierPath {
+    static func smoothFromPoints<P: Point2DRepresentable>(_ points: [P]) -> UIBezierPath {
         let path = UIBezierPath()
         guard points.count > 1 else {
             return path
