@@ -35,7 +35,7 @@ import Foundation
 
 // MARK: - SwiftSimplify
 
-public struct SwiftSimplify {
+public enum SwiftSimplify {
     
     public static func simplify<P: Point2DRepresentable>(_ points: [P], tolerance: Float?, highestQuality: Bool = false) -> [P] {
         guard points.count > 1 else {
