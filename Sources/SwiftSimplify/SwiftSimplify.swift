@@ -120,7 +120,7 @@ public struct SwiftSimplify {
 public extension Array where Element: Point2DRepresentable {
     
     func simplify(tolerance: Float? = nil, highestQuality: Bool = true) -> [Element] {
-        return SwiftSimplify.simplify(self, tolerance: tolerance, highestQuality: highestQuality)
+        SwiftSimplify.simplify(self, tolerance: tolerance, highestQuality: highestQuality)
     }
     
 }

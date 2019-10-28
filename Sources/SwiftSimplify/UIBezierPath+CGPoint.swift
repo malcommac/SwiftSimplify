@@ -76,7 +76,7 @@ fileprivate extension CGPoint {
     /// - Parameter p2: other point.
     /// - Returns: mid point.
     func midPointForPointsTo(_ p2: CGPoint) -> CGPoint {
-        return CGPoint(x: (x + p2.x) / 2, y: (y + p2.y) / 2)
+        CGPoint(x: (x + p2.x) / 2, y: (y + p2.y) / 2)
     }
     
     /// Control point to another point from receiver.
@@ -84,11 +84,11 @@ fileprivate extension CGPoint {
     /// - Parameter p2: other point.
     /// - Returns: control point for quad curve.
     func controlPointToPoint(_ p2:CGPoint) -> CGPoint {
-        var controlPoint = self.midPointForPointsTo(p2)
+        var controlPoint = midPointForPointsTo(p2)
         let  diffY = abs(p2.y - controlPoint.y)
-        if self.y < p2.y {
+        if y < p2.y {
             controlPoint.y = controlPoint.y + diffY
-        } else if ( self.y > p2.y ) {
+        } else if y > p2.y {
             controlPoint.y = controlPoint.y - diffY
         }
         return controlPoint
