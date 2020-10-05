@@ -35,14 +35,14 @@ import Foundation
 
 // MARK: - SwiftSimplify
 
-public struct SwiftSimplify {
+public enum SwiftSimplify {
     
     public static func simplify<P: Point2DRepresentable>(_ points: [P], tolerance: Float?, highestQuality: Bool = false) -> [P] {
         guard points.count > 1 else {
             return points
         }
         
-        let sqTolerance = tolerance != nil ? (tolerance! * tolerance!): 1.0
+        let sqTolerance = tolerance != nil ? (tolerance! * tolerance!) : 1.0
         var result = highestQuality ? points : simplifyRadialDistance(points, tolerance: sqTolerance)
         result = simplifyDouglasPeucker(result, sqTolerance: sqTolerance)
         
@@ -120,7 +120,7 @@ public struct SwiftSimplify {
 public extension Array where Element: Point2DRepresentable {
     
     func simplify(tolerance: Float? = nil, highestQuality: Bool = true) -> [Element] {
-        return SwiftSimplify.simplify(self, tolerance: tolerance, highestQuality: highestQuality)
+        SwiftSimplify.simplify(self, tolerance: tolerance, highestQuality: highestQuality)
     }
     
 }

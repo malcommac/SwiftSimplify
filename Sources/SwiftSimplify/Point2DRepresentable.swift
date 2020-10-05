@@ -45,19 +45,19 @@ public protocol Point2DRepresentable {
     func equalsTo(_ compare: Self) -> Bool
 }
 
-extension Point2DRepresentable {
+public extension Point2DRepresentable {
     
-    public func equalsTo(_ compare: Self) -> Bool {
-        return self.xValue == compare.xValue && self.yValue == compare.yValue
+    func equalsTo(_ compare: Self) -> Bool {
+        xValue == compare.xValue && yValue == compare.yValue
     }
     
-    public func distanceFrom(_ otherPoint: Self) -> Float {
-        let dx = self.xValue - otherPoint.xValue
-        let dy = self.yValue - otherPoint.yValue
+    func distanceFrom(_ otherPoint: Self) -> Float {
+        let dx = xValue - otherPoint.xValue
+        let dy = yValue - otherPoint.yValue
         return (dx * dx) + (dy * dy)
     }
     
-    public func distanceToSegment(_ p1: Self, _ p2: Self) -> Float {
+    func distanceToSegment(_ p1: Self, _ p2: Self) -> Float {
         var x = p1.xValue
         var y = p1.yValue
         var dx = p2.xValue - x
@@ -83,15 +83,15 @@ extension Point2DRepresentable {
 }
 
 extension CLLocationCoordinate2D: Point2DRepresentable {
-    public var xValue: Float { return Float(self.latitude) }
-    public var yValue: Float { return Float(self.longitude) }
+    public var xValue: Float { Float(latitude) }
+    public var yValue: Float { Float(longitude) }
     
-    public var cgPoint: CGPoint { return CGPoint(x: self.latitude, y: self.longitude) }
+    public var cgPoint: CGPoint { CGPoint(x: latitude, y: longitude) }
 }
 
 extension CGPoint: Point2DRepresentable {
-    public var xValue: Float { return Float(self.x) }
-    public var yValue: Float { return Float(self.y) }
+    public var xValue: Float { Float(x) }
+    public var yValue: Float { Float(y) }
     
-    public var cgPoint: CGPoint { return self }
+    public var cgPoint: CGPoint { self }
 }
