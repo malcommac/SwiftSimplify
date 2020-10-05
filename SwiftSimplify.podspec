@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SwiftSimplify"
-  s.version      = "1.1.0"
+  s.version      = "1.1.1"
   s.summary      = "High-performance Swift polyline simplification library ported from Javascript's Simplify.js"
   s.description  = <<-DESC
     SwiftSimplify is a tiny high-performance Swift polyline simplification library ported from Javascript's Simplify.js. Original work come from Leaflet, a JS interactive maps library by Vladimir Agafonkin. It uses a combination of Douglas-Peucker and Radial Distance algorithms. Works both on browser and server platforms.
@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/malcommac/SwiftSimplify.git", :tag => s.version.to_s }
   s.source_files = 'Sources/**/*.swift'
   s.frameworks  = "Foundation", "UIKit", "CoreLocation"
-  s.swift_version = "5.0"
+  s.swift_version = "5.3"
 end

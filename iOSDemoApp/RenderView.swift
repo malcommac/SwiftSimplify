@@ -14,7 +14,7 @@ class RenderView: UIView {
     
 	func renderPath(path: CGPath) {
 		self.path = path
-		self.setNeedsDisplay()
+		setNeedsDisplay()
 	}
 	
     override func draw(_ rect: CGRect) {
