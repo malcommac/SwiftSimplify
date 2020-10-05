@@ -45,19 +45,19 @@ public protocol Point2DRepresentable {
     func equalsTo(_ compare: Self) -> Bool
 }
 
-extension Point2DRepresentable {
+public extension Point2DRepresentable {
     
-    public func equalsTo(_ compare: Self) -> Bool {
+    func equalsTo(_ compare: Self) -> Bool {
         xValue == compare.xValue && yValue == compare.yValue
     }
     
-    public func distanceFrom(_ otherPoint: Self) -> Float {
+    func distanceFrom(_ otherPoint: Self) -> Float {
         let dx = xValue - otherPoint.xValue
         let dy = yValue - otherPoint.yValue
         return (dx * dx) + (dy * dy)
     }
     
-    public func distanceToSegment(_ p1: Self, _ p2: Self) -> Float {
+    func distanceToSegment(_ p1: Self, _ p2: Self) -> Float {
         var x = p1.xValue
         var y = p1.yValue
         var dx = p2.xValue - x

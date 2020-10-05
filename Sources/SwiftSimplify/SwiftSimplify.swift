@@ -42,7 +42,7 @@ public enum SwiftSimplify {
             return points
         }
         
-        let sqTolerance = tolerance != nil ? (tolerance! * tolerance!): 1.0
+        let sqTolerance = tolerance != nil ? (tolerance! * tolerance!) : 1.0
         var result = highestQuality ? points : simplifyRadialDistance(points, tolerance: sqTolerance)
         result = simplifyDouglasPeucker(result, sqTolerance: sqTolerance)
         

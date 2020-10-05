@@ -69,7 +69,7 @@ public extension UIBezierPath {
 
 // MARK: - CGPoint Extension
 
-fileprivate extension CGPoint {
+private extension CGPoint {
     
     /// Get the mid point of the receiver with another passed point.
     ///
