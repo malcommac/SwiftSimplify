@@ -1,5 +1,5 @@
 <p align="center" >
-  <img src="banner.png" width=300px alt="SwiftLocation" title="SwiftLocation">
+  <img src="banner.png" width=300px alt="SwiftSimplify" title="SwiftSimplify">
 </p>
 
 <p align="center"><strong>High-performance polyline simplification library</strong></p>
@@ -47,7 +47,7 @@ Allowed parameters are:
 *Hi fellow developer!*  
 You know, maintaing and developing tools consumes resources and time. While I enjoy making them **your support is foundamental to allow me continue its development**.  
 
-If you are using SwiftLocation or any other of my creations please consider the following options:
+If you are using SwiftSimplify or any other of my creations please consider the following options:
 
 - [**Make a donation with PayPal**](https://www.paypal.com/paypalme/danielemargutti/20)
 - [**Become a Sponsor**](https://github.com/sponsors/malcommac)
