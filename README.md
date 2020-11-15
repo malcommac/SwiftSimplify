@@ -1,21 +1,12 @@
 <p align="center" >
-<img src="./logo.png" height=250px alt="SwiftSimplify" title="SwiftSimplify">
+  <img src="banner.png" width=300px alt="SwiftLocation" title="SwiftLocation">
 </p>
 
-![](https://img.shields.io/cocoapods/v/SwiftSimplify.svg)
-![](https://img.shields.io/cocoapods/p/SwiftSimplify.svg)
-![](https://img.shields.io/badge/carthage-compatible-brightgreen.svg)
-[](https://img.shields.io/travis/malcommac/SwiftSimplify.svg)
-[![Build Status](https://travis-ci.org/malcommac/SwiftSimplify.svg?branch=master)](https://travis-ci.org/malcommac/SwiftDate)
-[![License](https://img.shields.io/cocoapods/l/SwiftSimplify.svg?style=flat)](http://cocoapods.org/pods/SwiftSimplify)
+<p align="center"><strong>High-performance polyline simplification library</strong></p>
 
 SwiftSimplify is a tiny high-performance Swift polyline simplification library ported from Javascript's [Simplify.js](http://mourner.github.io/simplify-js/). Original work come from [Leaflet](http://leafletjs.com/), a JS interactive maps library by [Vladimir Agafonkin](http://agafonkin.com/en).
 
 It uses a combination of [Douglas-Peucker](http://en.wikipedia.org/wiki/Ramer-Douglas-Peucker_algorithm) and Radial Distance algorithms. Works both on browser and server platforms.
-
-<p align="center" >★★ <b>Star our github repository to help us!</b> ★★</p>
-
-## Why
 
 Polyline simplification dramatically reduces the number of points in a polyline while retaining its shape, giving a huge performance boost when processing it and also reducing visual noise. For example, it's essential when rendering a 70k-points line chart or a map route in the browser using MapKit.
 
@@ -51,14 +42,58 @@ Allowed parameters are:
 * ```tolerance```: *(1 by default)* Affects the amount of simplification (in the same metric as the point coordinates)
 * ```highQuality```: *(false by default)* Excludes distance-based preprocessing step which leads to highest quality simplification but runs ~10-20 times slower.
 
-## Author
+## ❤️ Your Support
 
-Daniele Margutti, [me@danielemargutti.com](mailto:me@danielemargutti)
+*Hi fellow developer!*  
+You know, maintaing and developing tools consumes resources and time. While I enjoy making them **your support is foundamental to allow me continue its development**.  
 
-You can reach me on twitter [@danielemargutti](http://www.twitter.com/danielemargutti). 
+If you are using SwiftLocation or any other of my creations please consider the following options:
 
-My web site is [danielemargutti.com](http://www.danielemargutti.com)
+- [**Make a donation with PayPal**](https://www.paypal.com/paypalme/danielemargutti/20)
+- [**Become a Sponsor**](https://github.com/sponsors/malcommac)
 
-## License
+- [Follow Me](https://github.com/malcommac)
 
-SwiftSimplify is available under the MIT license. See the LICENSE file for more info.
+### Installation
+
+SwiftSimplify is compatible with Swift 5.x+ under iOS (11+) and macOS platforms.  
+
+You can install it via CocoaPods:
+
+```sh
+use_frameworks!
+pod 'SwiftSimplify'
+```
+
+or SPM in your `Package.swift`:
+
+```sh
+import PackageDescription
+
+  let package = Package(name: "YourPackage",
+    dependencies: [
+      .Package(url: "https://github.com/malcommac/SwiftSimplify.git", majorVersion: 0),
+    ]
+  )
+```
+
+**Consider ❤️ [support the development](#support) of this library!**
+
+## Contributing
+
+- If you **need help** or you'd like to **ask a general question**, open an issue.
+- If you **found a bug**, open an issue.
+- If you **have a feature request**, open an issue.
+- If you **want to contribute**, submit a pull request.
+
+## Copyright & Acknowledgements
+
+SwiftSimplify is currently owned and maintained by Daniele Margutti.  
+You can follow me on Twitter [@danielemargutti](http://twitter.com/danielemargutti).  
+My web site is [https://www.danielemargutti.com](https://www.danielemargutti.com) 
+
+This software is licensed under [MIT License](LICENSE.md).
+
+***Follow me on:***  
+- 💼 [Linkedin](https://www.linkedin.com/in/danielemargutti/)  
+- 🐦 [Twitter](https://twitter.com/danielemargutti)
