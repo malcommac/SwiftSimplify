@@ -36,6 +36,7 @@ import CoreLocation
 public protocol Point2DRepresentable {
     var xValue: Float { get }
     var yValue: Float { get }
+    var isMandatory: Bool { get }
     
     var cgPoint: CGPoint { get }
     
@@ -46,6 +47,10 @@ public protocol Point2DRepresentable {
 }
 
 public extension Point2DRepresentable {
+    
+    var isMandatory: Bool {
+        return false
+    }
     
     func equalsTo(_ compare: Self) -> Bool {
         xValue == compare.xValue && yValue == compare.yValue
