@@ -38,15 +38,29 @@ import Foundation
 public enum SwiftSimplify {
     
     public static func simplify<P: Point2DRepresentable>(_ points: [P], tolerance: Float?, highestQuality: Bool = false) -> [P] {
-        guard points.count > 1 else {
-            return points
-        }
-        
         let sqTolerance = tolerance != nil ? (tolerance! * tolerance!) : 1.0
-        var result = highestQuality ? points : simplifyRadialDistance(points, tolerance: sqTolerance)
-        result = simplifyDouglasPeucker(result, sqTolerance: sqTolerance)
+
+        // Split the given points by their mandatory members.
+        // Since the first (and last) point of each simplification loop will be
+        // added to the final result, all mandatory points will be included.
+        let splitPoints = points
+            .split(whereSeparator: { $0.isMandatory })
+            .map({ Array($0) })
         
-        return result
+        var results: [[P]] = []
+
+        for somePoints in splitPoints {
+            guard somePoints.count > 1 else {
+                results.append(somePoints)
+                continue
+            }
+            
+            var result = highestQuality ? somePoints : simplifyRadialDistance(somePoints, tolerance: sqTolerance)
+            result = simplifyDouglasPeucker(result, sqTolerance: sqTolerance)
+            results.append(result)
+        }
+
+        return results.flatMap({ return $0 })
     }
     
     private static func simplifyRadialDistance<P: Point2DRepresentable>(_ points: [P], tolerance: Float) -> [P] {
